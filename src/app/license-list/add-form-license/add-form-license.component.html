@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-12">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>License Data</mat-card-title>
+              </mat-card-header>
+            <form [formGroup]="addLicenseForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <mat-form-field class="full-width">
+                            <mat-select formControlName="apllicationName" name="food">
+                                <mat-option *ngFor="let food of foods" [value]="food.value">
+                                    {{food.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>                                      
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <mat-label>License Name</mat-label>
+                            <input matInput formControlName="bankName" >
+                            
+                        </mat-form-field>
+                        <span
+                            *ngIf="!addLicenseForm.get('bankName').valid && addLicenseForm.get('bankName').touched"
+                            class="help-block" style="color: red;">
+                            Please enter a valid Bank Name!
+                         </span>  
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-5">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Created Data</mat-label>
+                            <input matInput [matDatepicker]="dp1" disabled formControlName="createdData">
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker #dp1></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-md-5">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Exppired Date</mat-label>
+                            <input matInput [matDatepicker]="dp2" disabled formControlName="exppiredDate">
+                            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker #dp2></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button mat-raised-button color="primary" type="submit" style="width: 100%;"
+                        [disabled]="!addLicenseForm.valid"
+                        >
+                           <strong> Add License</strong>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-card>    
+    </div>
+</div>

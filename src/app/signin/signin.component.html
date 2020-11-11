@@ -1,0 +1,32 @@
+<div class="row justify-content-center" style="margin-top: 120px;">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group ">
+          <label for="name">User Name</label>
+          <input type="text" id="name" name="name" class="form-control" formControlName="username">
+          <span
+              *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched"
+              class="help-block" style="color: red;">Please enter a valid user name!
+         </span>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"class="form-control" formControlName="password">
+          <span
+          *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"
+          class="help-block" style="color: red;">Please enter a valid password!
+          </span>
+        </div>
+        <span
+          *ngIf="!signupForm.valid && signupForm.touched"
+          class="help-block" style="color: red;">Please enter valid data!
+        <hr>
+        </span>
+          <div class="form-group btn-primary" style="text-align: center; border-radius: 5px;" >
+            <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid || !signupForm.touched">Sign In</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  

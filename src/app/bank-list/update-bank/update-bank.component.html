@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>Edit Data</h1>
+<div class="row" *ngIf="this.bank">
+    <div class="col-md-12">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>User Data</mat-card-title>
+              </mat-card-header>
+            <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <mat-label>Bank Name</mat-label>
+                            <input matInput formControlName="bankname" >
+                            
+                        </mat-form-field>
+                         <span
+                            *ngIf="!updateForm.get('bankname').valid && updateForm.get('bankname').touched"
+                            class="help-block" style="color: red;">
+                            Please enter a valid bank name!
+                         </span>             
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <mat-label>Country</mat-label>
+                            <input matInput formControlName="country" >
+                            
+                        </mat-form-field>
+                        <span
+                            *ngIf="!updateForm.get('country').valid && updateForm.get('country').touched"
+                            class="help-block" style="color: red;">
+                            Please enter a valid country!
+                         </span>  
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-7">
+                        <mat-form-field class="full-width">
+                            <mat-label>User Id</mat-label>
+                            <input matInput formControlName="userId" >
+                            
+                        </mat-form-field>
+                        <span
+                            *ngIf="!updateForm.get('userId').valid && updateForm.get('userId').touched"
+                            class="help-block" style="color: red;">
+                            Please enter a valid userId!
+                         </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button mat-raised-button color="primary" type="submit" style="width: 100%;"
+                        [disabled]="!updateForm.valid">
+                           <strong> Update Bank</strong>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-card>    
+    </div>
+</div>
