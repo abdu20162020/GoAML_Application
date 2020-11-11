@@ -53,6 +53,8 @@ import { LicenseListComponent } from './license-list/license-list.component';
 import { AddFormLicenseComponent } from './license-list/add-form-license/add-form-license.component'
 import { MatNativeDateModule } from '@angular/material/core';
 import { SearchLicenseComponent } from './license-list/search-license/search-license.component';
+import { UpdateLicenseComponent } from './license-list/update-license/update-license.component';
+import { LicenseServiceTest } from './shared/license.test.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +72,7 @@ import { SearchLicenseComponent } from './license-list/search-license/search-lic
     LicenseListComponent,
     AddFormLicenseComponent,
     SearchLicenseComponent,
+    UpdateLicenseComponent,
   
   ],
   
@@ -114,7 +117,7 @@ import { SearchLicenseComponent } from './license-list/search-license/search-lic
     MatNativeDateModule 
 
   ],
-  providers: [UserService,BankService,MatDatepickerModule],
+  providers: [UserService,BankService,MatDatepickerModule,LicenseServiceTest],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

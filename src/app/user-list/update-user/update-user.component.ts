@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { User } from 'src/app/shared/user.model';
-import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-update-user',
@@ -12,7 +11,7 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class UpdateUserComponent implements OnInit {
 
-  constructor(private userService:UserService ,public dialogRef: MatDialogRef<UpdateUserComponent>,@Inject(MAT_DIALOG_DATA) public user: User) { }
+  constructor(public dialogRef: MatDialogRef<UpdateUserComponent>,@Inject(MAT_DIALOG_DATA) public user: User) { }
   updateForm:FormGroup;
   subscription: Subscription;
   hide=false;
