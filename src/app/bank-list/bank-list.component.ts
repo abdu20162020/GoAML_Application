@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateBankComponent } from './update-bank/update-bank.component';
 import { AddBankFormComponent } from './add-bank-form/add-bank-form.component';
 import { MatSort } from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -31,13 +32,14 @@ export class BankListComponent implements OnInit {
     }
   constructor( 
     private bankService:BankService,private snackBar: MatSnackBar,private matDialog:MatDialog
+    ,private toastr: ToastrService
     ) { }
    
   ngOnInit(): void {
   this.bankData=this.bankService.getBanksTable();
   this.dataSource.data=this.bankData;
   }
-  displayedColumns: string[] = [ 'Id', 'bankName', 'country','userId','Update','Delete'];
+  displayedColumns: string[] = [ 'id', 'name', 'country','Update','Delete'];
   onUpdate(bank:Bank){
     const DilogCon=new MatDialogConfig();
     DilogCon.disableClose=true;
@@ -49,20 +51,18 @@ export class BankListComponent implements OnInit {
   }
   onDelete(bank:Bank){
    
-    let mass='The Bank '+bank.bankName+' Deleted';
+    let mass='The Bank '+bank.name+' Deleted';
     this.undo = false;
     let snackBarRef = this.snackBar.open(mass, 'Undo', {
       duration: 6000
     });
     setTimeout( () => {
       if(!this.undo){
-        console.log("success");
         this.deletUser(bank);
         this.snackBar.dismiss();
       }
     }, 6000);
     snackBarRef.onAction().subscribe(() => {
-      console.log('undo');
       this.undo = true;
     });
   }
@@ -70,6 +70,7 @@ export class BankListComponent implements OnInit {
     const index = this.bankData.indexOf(bank, 0);    
     this.bankData.splice(index, 1); 
     this.dataSource.data=this.bankData;
+    this.showSuccess();
   }
   onClick(){
     const DilogCon=new MatDialogConfig();
@@ -78,5 +79,14 @@ export class BankListComponent implements OnInit {
     DilogCon.width="60%";
     this.matDialog.open(AddBankFormComponent,DilogCon);
 
+  }
+  showSuccess() {
+    
+    this.toastr
+    this.toastr.success('Deleted successfully!','',{
+      "closeButton": true,
+      "progressBar": true
+    });
+    this.toastr.clear;
   }
 }

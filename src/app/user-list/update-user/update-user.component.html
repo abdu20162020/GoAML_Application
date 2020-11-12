@@ -6,15 +6,13 @@
         <mat-icon style="cursor: pointer;" (click)="closePop()">close</mat-icon>
     </div>
 </div>
+<!-- { id:0, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:2001/20/10, birthDate:2001/20/10 } -->
+
 <div class="row" *ngIf="this.user">
     <div class="col-md-12">
         <mat-card>
             <mat-card-header>
-                <mat-card-title>User Data</mat-card-title>
-               
-                    
-                
-                
+                <mat-card-title>User Data</mat-card-title>    
               </mat-card-header>
             <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
                 <div class="row">
@@ -43,6 +41,25 @@
                          </span>  
                     </div>
                 </div> 
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill" class="full-width">
+                            <mat-label>birthDate</mat-label>
+                            <input matInput [matDatepicker]="dp1" disabled formControlName="birthDate">
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Completely disabled creationDate</mat-label>
+                            <input matInput [matDatepicker]="dp2" disabled formControlName="creationDate">
+                            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker #dp2></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-7">
                         <mat-form-field appearance="fill" class="full-width">

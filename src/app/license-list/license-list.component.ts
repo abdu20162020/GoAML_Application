@@ -6,7 +6,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { License } from '../shared/license.new.model';
 import { LicenseServiceTest } from '../shared/license.test.service';
-import { AddFormLicenseComponent } from './add-form-license/add-form-license.component';
 import { UpdateLicenseComponent } from './update-license/update-license.component';
 import { ToastrService } from 'ngx-toastr';
 
@@ -38,7 +37,7 @@ export class LicenseListComponent implements OnInit {
     this.dataSource.data=this.LicenseData;
     console.log(this.LicenseData);
   }
-  displayedColumns: string[] = [ 'Id', 'bankName', 'country','userId','Update','Delete'];
+  displayedColumns: string[] = [ 'id', 'name', 'creation_date','expiration_date','Update','Delete'];
   onUpdate(license:License){
     const DilogCon=new MatDialogConfig();
     DilogCon.disableClose=true;
@@ -50,7 +49,7 @@ export class LicenseListComponent implements OnInit {
   }
   onDelete(license:License){
    
-    let mass='The License '+license.bankName+' Deleted';
+    let mass='The License '+license.name+' Deleted';
     this.undo = false;
     let snackBarRef = this.snackBar.open(mass, 'Undo', {
       duration: 3000
@@ -59,7 +58,7 @@ export class LicenseListComponent implements OnInit {
       if(!this.undo){
         this.deletUser(license);
         this.snackBar.dismiss();
-        this.showSuccess(license.bankName);
+        this.showSuccess(license.name);
       }
     }, 3000);
     snackBarRef.onAction().subscribe(() => {
@@ -71,10 +70,10 @@ export class LicenseListComponent implements OnInit {
     this.LicenseData.splice(index, 1); 
     this.dataSource.data=this.LicenseData;
   }
-  showSuccess(bankName:string) {
+  showSuccess(name:string) {
     
     this.toastr
-    this.toastr.success('Deleted successfully!',bankName,{
+    this.toastr.success('Deleted successfully!',name,{
       "closeButton": true,
       "progressBar": true
     });

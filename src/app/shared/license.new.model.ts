@@ -1,6 +1,6 @@
 export  interface License{
-    Id:number,
-    bankName:string,
-    country:string,
-    userId:number
+    id:number,
+    name:string,
+    creation_date:Date,
+    expiration_date:Date
 }

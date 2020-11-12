@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { MatSort } from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -31,12 +32,12 @@ export class UserListComponent implements OnInit {
     this.dataSource.sort = this.sort;
 
     }
-  constructor( private userService:UserService,private snackBar: MatSnackBar,private matDialog:MatDialog) { }
+  constructor( private userService:UserService,private snackBar: MatSnackBar,private matDialog:MatDialog,private toastr: ToastrService) { }
   ngOnInit(): void { 
    this.usersData=this.userService.getUsersTable();
    this.dataSource.data=this.usersData;
-  }
-  displayedColumns: string[] = [ 'userName', 'password', 'email','Update','Delete'];
+  }  
+  displayedColumns: string[] = [ 'userName', 'password', 'email','creation_date','birth_date','Update','Delete'];
   onUpdate(user:User){
     const DilogCon=new MatDialogConfig();
     DilogCon.disableClose=true;
@@ -49,14 +50,15 @@ export class UserListComponent implements OnInit {
     let mass='the user '+user.userName+' Deleted';
     this.undo = false;
     let snackBarRef = this.snackBar.open(mass, 'Undo', {
-      duration: 6000
+      duration: 2000
     });
     setTimeout( () => {
       if(!this.undo){
         this.deletUser(user);
+        this.showSuccess();
         this.snackBar.dismiss();
       }
-    }, 6000);
+    }, 2000);
     snackBarRef.onAction().subscribe(() => {
       this.undo = true;
     });
@@ -70,7 +72,13 @@ export class UserListComponent implements OnInit {
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
     this.matDialog.open(AddUserFormComponent,DilogCon);
-
+  }
+  showSuccess() { 
+    this.toastr.success('User deleted successfully!','',{
+      "closeButton": true,
+      "progressBar": true
+    });
+    this.toastr.clear;
   }
 
 }

@@ -6,7 +6,6 @@
         <mat-icon style="cursor: pointer;" (click)="closePop()">close</mat-icon>
     </div>
 </div>
-
 <div class="row" *ngIf="this.license">
     <div class="col-md-12">
         <mat-card>
@@ -15,45 +14,45 @@
               </mat-card-header>
             <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
                 <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <mat-select formControlName="name" name="name">
+                                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                                        {{food.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>  
+                        </div>
+                    
+                </div>
+                <div class="row">
                     <div class="col-md-6">
-                        <mat-form-field class="full-width">
-                            <mat-label>Bank Name</mat-label>
-                            <input matInput formControlName="Licensename" >
-                            
-                        </mat-form-field>
-                         <span
-                            *ngIf="!updateForm.get('Licensename').valid && updateForm.get('Licensename').touched"
-                            class="help-block" style="color: red;">
-                            Please enter a valid bank name!
-                         </span>             
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field class="full-width">
-                            <mat-label>Country</mat-label>
-                            <input matInput formControlName="country" >
-                            
+                        <mat-form-field appearance="fill" class="full-width">
+                            <mat-label>expiration_date</mat-label>
+                            <input matInput [matDatepicker]="dp1" disabled formControlName="expiration_date">
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                         </mat-form-field>
                         <span
-                            *ngIf="!updateForm.get('country').valid && updateForm.get('country').touched"
+                            *ngIf="!updateForm.get('expiration_date').valid && updateForm.get('expiration_date').touched"
                             class="help-block" style="color: red;">
-                            Please enter a valid country!
+                            Please enter a valid expiration_date!
+                         </span>  
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill" class="full-width">
+                            <mat-label>creation_date</mat-label>
+                            <input matInput [matDatepicker]="dp1" disabled formControlName="creation_date">
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                        <span
+                            *ngIf="!updateForm.get('creation_date').valid && updateForm.get('creation_date').touched"
+                            class="help-block" style="color: red;">
+                            Please enter a valid creation_date!
                          </span>  
                     </div>
                 </div> 
-                <div class="row">
-                    <div class="col-md-7">
-                        <mat-form-field class="full-width">
-                            <mat-label>User Id</mat-label>
-                            <input matInput formControlName="userId" >
-                            
-                        </mat-form-field>
-                        <span
-                            *ngIf="!updateForm.get('userId').valid && updateForm.get('userId').touched"
-                            class="help-block" style="color: red;">
-                            Please enter a valid userId!
-                         </span>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <button mat-raised-button color="primary" type="submit" style="width: 100%;"

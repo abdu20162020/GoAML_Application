@@ -9,42 +9,42 @@
                     <div class="col-md-6">
 
                         <mat-form-field class="full-width">
-                            <mat-select formControlName="apllicationName" name="food">
+                            <mat-select formControlName="name" name="food">
                                 <mat-option *ngFor="let food of foods" [value]="food.value">
                                     {{food.value}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>                                      
                     </div>
-                    <div class="col-md-6">
-                        <mat-form-field class="full-width">
-                            <mat-label>License Name</mat-label>
-                            <input matInput formControlName="bankName" >
-                            
-                        </mat-form-field>
-                        <span
-                            *ngIf="!addLicenseForm.get('bankName').valid && addLicenseForm.get('bankName').touched"
-                            class="help-block" style="color: red;">
-                            Please enter a valid Bank Name!
-                         </span>  
-                    </div>
+                  
                 </div> 
                 <div class="row">
-                    <div class="col-md-5">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Created Data</mat-label>
-                            <input matInput [matDatepicker]="dp1" disabled formControlName="createdData">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill"  class="full-width">
+                            <mat-label > exanple : 11/17/2020</mat-label>
+                            <input matInput [matDatepicker]="dp1"  formControlName="created_data">
                             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                             <mat-datepicker #dp1></mat-datepicker>
                           </mat-form-field>
+                          <span
+                          *ngIf="!addLicenseForm.get('created_data').valid && addLicenseForm.get('created_data').touched"
+                          class="help-block" style="color: red;">
+                          Please enter a valid creation_date!
+                       </span>
                     </div>
-                    <div class="col-md-5">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Exppired Date</mat-label>
-                            <input matInput [matDatepicker]="dp2" disabled formControlName="exppiredDate">
+
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill"  class="full-width">
+                            <mat-label>exanple : 11/17/2020</mat-label>
+                            <input matInput [matDatepicker]="dp2"  formControlName="exppired_date">
                             <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                             <mat-datepicker #dp2></mat-datepicker>
                           </mat-form-field>
+                          <span
+                          *ngIf="!addLicenseForm.get('exppired_date').valid && addLicenseForm.get('exppired_date').touched"
+                          class="help-block" style="color: red;">
+                          Please enter a valid exppired_date!
+                       </span>
                     </div>
                 </div>
                 <div class="row">

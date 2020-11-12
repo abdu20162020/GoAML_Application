@@ -39,20 +39,6 @@
                     </div>
                 </div> 
                 <div class="row">
-                    <div class="col-md-7">
-                        <mat-form-field class="full-width">
-                            <mat-label>User Id</mat-label>
-                            <input matInput formControlName="userId" >
-                            
-                        </mat-form-field>
-                        <span
-                            *ngIf="!updateForm.get('userId').valid && updateForm.get('userId').touched"
-                            class="help-block" style="color: red;">
-                            Please enter a valid userId!
-                         </span>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12">
                         <button mat-raised-button color="primary" type="submit" style="width: 100%;"
                         [disabled]="!updateForm.valid">

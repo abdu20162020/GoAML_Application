@@ -8,18 +8,8 @@ table {
     margin-top: 12px;
     margin-bottom: 12px;
   }
-  .btn{
-      width: 50%;
-      margin-left: 20px;
-      text-align: center;
-      float: right;
-  
-  
-  }
-  
-  .action{
-      margin-left: 50px;
-     text-align: center;
+  .tableHead{
+    text-align: justify;
   }
   
   

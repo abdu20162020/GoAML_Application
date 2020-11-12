@@ -4,42 +4,40 @@ import { User } from "./user.model";
 
 export class UserService{
     private users: User[] = [
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com'),
-        new User(0,'Ali','rrrrrr','ali@gmail.com'),
-        new User(0,'Omer','rrrrrr','ali@gmail.com')
+        { id:0, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:1, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:2, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:3, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:4, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:5, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:6, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:7, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:8, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:9, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:10, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:11, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:12, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:13, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:14, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:15, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:16, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:17, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:18, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:19, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:20, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:21, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:22, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:23, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:23, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:24, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:25, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:26, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:27, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }, 
+        { id:28, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creation_date:new Date("2019-01-16"), birth_date:new Date("2019-01-16") }
       ];    
-    userUpdate= new Subject<User>();
     usersChanged = new Subject<User[]>();
      getUsers(){
          return this.users.slice();
-     }
-
-     updateUser(user:User){
-         this.userUpdate.next(user);
      }
      getUsersTable(){
          return this.users.slice();

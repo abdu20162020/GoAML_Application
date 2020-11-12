@@ -6,6 +6,8 @@
         <mat-icon style="cursor: pointer;" (click)="closePop()">close</mat-icon>
     </div>
 </div>
+<!-- { id:0, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:2001/20/10, birthDate:2001/20/10 } -->
+
 <div class="row">
     <div class="col-md-12">
         <mat-card>
@@ -18,7 +20,6 @@
                         <mat-form-field class="full-width">
                             <mat-label>Full Name</mat-label>
                             <input matInput formControlName="username" >
-                            
                         </mat-form-field>
                          <span
                             *ngIf="!addUserForm.get('username').valid && addUserForm.get('username').touched"
@@ -38,7 +39,8 @@
                             Please enter a valid Email!
                          </span>  
                     </div>
-                </div> 
+                </div>
+                 
                 <div class="row">
                     <div class="col-md-7">
                         <mat-form-field appearance="fill" class="full-width">
@@ -55,6 +57,19 @@
                             class="help-block" style="color: red;">
                             Please enter a valid Password!
                          </span>  
+                    </div>
+                    <div class="col-md-5">
+                        <mat-form-field appearance="fill" class="full-width" color="primary">
+                            <mat-label>birthDate</mat-label>
+                            <input matInput [matDatepicker]="dp1" formControlName="birthDate">
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker #dp1 color="primary" ></mat-datepicker>
+                        </mat-form-field>
+                        <span
+                        *ngIf="!addUserForm.get('birthDate').valid && addUserForm.get('birthDate').touched"
+                        class="help-block" style="color: red;">
+                        Please enter a valid birthDate!
+                        </span>  
                     </div>
                 </div>
                 <div class="row">

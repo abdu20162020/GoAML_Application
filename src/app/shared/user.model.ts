@@ -1,5 +1,9 @@
-export class User{
+export interface User{
 
-    constructor(public id:number,public userName:string,public password:string,public email:string){}
-
+     id:number, 
+     userName:string, 
+     password:string,
+     email:string,
+     creation_date:Date,
+     birth_date:Date
 }
