@@ -34,5 +34,8 @@ export class UpdateBankComponent implements OnInit {
     this.bank=undefined;
     this.dialogRef.close(); 
   }
+  closePop(){
+    this.dialogRef.close(); 
+  }
 
 }

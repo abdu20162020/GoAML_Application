@@ -55,6 +55,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { SearchLicenseComponent } from './license-list/search-license/search-license.component';
 import { UpdateLicenseComponent } from './license-list/update-license/update-license.component';
 import { LicenseServiceTest } from './shared/license.test.service';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,7 +115,8 @@ import { LicenseServiceTest } from './shared/license.test.service';
     MatPaginatorModule,
     GoogleChartsModule,
     AppRoutingModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [UserService,BankService,MatDatepickerModule,LicenseServiceTest],

@@ -39,7 +39,7 @@ export class UserListComponent implements OnInit {
   displayedColumns: string[] = [ 'userName', 'password', 'email','Update','Delete'];
   onUpdate(user:User){
     const DilogCon=new MatDialogConfig();
-    DilogCon.disableClose=false;
+    DilogCon.disableClose=true;
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
     DilogCon.data=user;
@@ -66,7 +66,7 @@ export class UserListComponent implements OnInit {
   }
   onClick(){
     const DilogCon=new MatDialogConfig();
-    DilogCon.disableClose=false;
+    DilogCon.disableClose=true;
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
     this.matDialog.open(AddUserFormComponent,DilogCon);
