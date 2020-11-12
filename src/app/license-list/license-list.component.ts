@@ -8,6 +8,7 @@ import { License } from '../shared/license.new.model';
 import { LicenseServiceTest } from '../shared/license.test.service';
 import { AddFormLicenseComponent } from './add-form-license/add-form-license.component';
 import { UpdateLicenseComponent } from './update-license/update-license.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-license-list',
@@ -28,7 +29,9 @@ export class LicenseListComponent implements OnInit {
 
     }
 
-  constructor(private LicenseServiceTest:LicenseServiceTest,private snackBar: MatSnackBar,private matDialog:MatDialog) { }
+  constructor(private LicenseServiceTest:LicenseServiceTest,private snackBar: MatSnackBar,
+    private matDialog:MatDialog,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.LicenseData=this.LicenseServiceTest.getLicensesTable();
@@ -38,7 +41,7 @@ export class LicenseListComponent implements OnInit {
   displayedColumns: string[] = [ 'Id', 'bankName', 'country','userId','Update','Delete'];
   onUpdate(license:License){
     const DilogCon=new MatDialogConfig();
-    DilogCon.disableClose=false;
+    DilogCon.disableClose=true;
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
     DilogCon.data=license;
@@ -50,32 +53,32 @@ export class LicenseListComponent implements OnInit {
     let mass='The License '+license.bankName+' Deleted';
     this.undo = false;
     let snackBarRef = this.snackBar.open(mass, 'Undo', {
-      duration: 6000
+      duration: 3000
     });
     setTimeout( () => {
       if(!this.undo){
-        console.log("success");
         this.deletUser(license);
         this.snackBar.dismiss();
+        this.showSuccess(license.bankName);
       }
-    }, 6000);
+    }, 3000);
     snackBarRef.onAction().subscribe(() => {
-      console.log('undo');
       this.undo = true;
-    });
+    });    
   }
   deletUser(license:License){
     const index = this.LicenseData.indexOf(license, 0);    
     this.LicenseData.splice(index, 1); 
     this.dataSource.data=this.LicenseData;
   }
-  onClick(){
-    const DilogCon=new MatDialogConfig();
-    DilogCon.disableClose=false;
-    DilogCon.autoFocus=true;
-    DilogCon.width="60%";
-    this.matDialog.open(AddFormLicenseComponent,DilogCon);
-
+  showSuccess(bankName:string) {
+    
+    this.toastr
+    this.toastr.success('Deleted successfully!',bankName,{
+      "closeButton": true,
+      "progressBar": true
+    });
+    this.toastr.clear;
   }
  
 

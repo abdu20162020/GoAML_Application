@@ -1,5 +1,11 @@
-<h1 mat-dialog-title>Edit Data</h1>
-<div class="row" *ngIf="this.bank">
+<div class="row">
+    <div class="col-md-11">
+        <h1 mat-dialog-title>Edit Data</h1>
+    </div>
+    <div class="col-md-1">
+        <mat-icon style="cursor: pointer;" (click)="closePop()">close</mat-icon>
+    </div>
+</div><div class="row" *ngIf="this.bank">
     <div class="col-md-12">
         <mat-card>
             <mat-card-header>

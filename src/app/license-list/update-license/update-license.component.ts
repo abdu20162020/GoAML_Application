@@ -30,4 +30,7 @@ export class UpdateLicenseComponent implements OnInit {
     this.license=undefined;
     this.dialogRef.close(); 
   }
+  closePop(){
+    this.dialogRef.close(); 
+  }
 }

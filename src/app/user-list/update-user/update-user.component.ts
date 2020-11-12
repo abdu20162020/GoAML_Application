@@ -37,5 +37,9 @@ export class UpdateUserComponent implements OnInit {
     this.updateForm.reset();  
     this.dialogRef.close(); 
   }
+  closePop(){
+    this.dialogRef.close(); 
+
+  }
 
 }

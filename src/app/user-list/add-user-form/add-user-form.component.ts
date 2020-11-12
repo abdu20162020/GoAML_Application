@@ -26,5 +26,9 @@ export class AddUserFormComponent implements OnInit {
     this.addUserForm.reset();
     this.dialogRef.close();
   }
+  closePop(){
+    this.dialogRef.close(); 
+
+  }
 
 }

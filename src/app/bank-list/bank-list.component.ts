@@ -40,7 +40,7 @@ export class BankListComponent implements OnInit {
   displayedColumns: string[] = [ 'Id', 'bankName', 'country','userId','Update','Delete'];
   onUpdate(bank:Bank){
     const DilogCon=new MatDialogConfig();
-    DilogCon.disableClose=false;
+    DilogCon.disableClose=true;
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
     DilogCon.data=bank;
@@ -73,7 +73,7 @@ export class BankListComponent implements OnInit {
   }
   onClick(){
     const DilogCon=new MatDialogConfig();
-    DilogCon.disableClose=false;
+    DilogCon.disableClose=true;
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
     this.matDialog.open(AddBankFormComponent,DilogCon);

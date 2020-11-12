@@ -27,5 +27,8 @@ export class AddBankFormComponent implements OnInit {
     this.addBankForm.reset();
     this.dialogRef.close();
   }
+  closePop(){
+    this.dialogRef.close();
+  }
 
 }
