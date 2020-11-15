@@ -27,7 +27,6 @@ export class LicenseListComponent implements OnInit {
     this.dataSource.sort = this.sort;
 
     }
-
   constructor(private LicenseServiceTest:LicenseServiceTest,private snackBar: MatSnackBar,
     private matDialog:MatDialog,
     private toastr: ToastrService) { }
@@ -37,7 +36,7 @@ export class LicenseListComponent implements OnInit {
     this.dataSource.data=this.LicenseData;
     console.log(this.LicenseData);
   }
-  displayedColumns: string[] = [ 'id', 'name', 'creation_date','expiration_date','Update','Delete'];
+  displayedColumns: string[] = [ 'id', 'name', 'creationDate','expirationDate','Update','Delete'];
   onUpdate(license:License){
     const DilogCon=new MatDialogConfig();
     DilogCon.disableClose=true;
@@ -70,8 +69,7 @@ export class LicenseListComponent implements OnInit {
     this.LicenseData.splice(index, 1); 
     this.dataSource.data=this.LicenseData;
   }
-  showSuccess(name:string) {
-    
+  showSuccess(name:string) {   
     this.toastr
     this.toastr.success('Deleted successfully!',name,{
       "closeButton": true,
@@ -79,7 +77,4 @@ export class LicenseListComponent implements OnInit {
     });
     this.toastr.clear;
   }
- 
-
-
 }

@@ -26,8 +26,8 @@ export class UpdateUserComponent implements OnInit {
       'username': new FormControl(this.user.userName, [Validators.required,Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")]),
       'email': new FormControl(this.user.email, [Validators.required,Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}")]),
       'password': new FormControl(this.user.password, [Validators.required]),
-      'creationDate':new FormControl(this.user.creation_date),
-      'birthDate':new FormControl(this.user.birth_date,[Validators.required])
+      'creationDate':new FormControl(this.user.creationDate),
+      'birthDate':new FormControl(this.user.birthDate,[Validators.required])
     });
   }
   onSubmit(){

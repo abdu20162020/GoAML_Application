@@ -29,7 +29,7 @@ export class StatisticalInfoComponent implements OnInit {
 //  options = {
 //   colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'], is3D: true
 // };
-   width = 1000;
-   height = 500;
+   width = 1080;
+   height = 400;
 
 }

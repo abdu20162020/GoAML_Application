@@ -28,8 +28,8 @@ export class AddFormLicenseComponent implements OnInit {
     DilogCon.width="60%";
     DilogCon.data= {id:0,
       name:this.addLicenseForm.get('name').value,
-      creation_date:new Date("2018-01-16"),
-      expiration_date:new Date("2012-11-16")
+      creationDate:new Date("2018-01-16"),
+      expirationDate:new Date("2012-11-16")
     
     } ;
     this.matDialog.open(UpdateLicenseComponent,DilogCon);

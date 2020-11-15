@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit {
    this.usersData=this.userService.getUsersTable();
    this.dataSource.data=this.usersData;
   }  
-  displayedColumns: string[] = [ 'userName', 'password', 'email','creation_date','birth_date','Update','Delete'];
+  displayedColumns: string[] = [ 'userName', 'password', 'email','creationDate','birthDate','Update','Delete'];
   onUpdate(user:User){
     const DilogCon=new MatDialogConfig();
     DilogCon.disableClose=true;

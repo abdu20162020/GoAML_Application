@@ -28,28 +28,28 @@
                 <div class="row">
                     <div class="col-md-6">
                         <mat-form-field appearance="fill" class="full-width">
-                            <mat-label>expiration_date</mat-label>
-                            <input matInput [matDatepicker]="dp1" disabled formControlName="expiration_date">
+                            <mat-label>expirationDate</mat-label>
+                            <input matInput [matDatepicker]="dp1" disabled formControlName="expirationDate">
                             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                             <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                         </mat-form-field>
                         <span
-                            *ngIf="!updateForm.get('expiration_date').valid && updateForm.get('expiration_date').touched"
+                            *ngIf="!updateForm.get('expirationDate').valid && updateForm.get('expirationDate').touched"
                             class="help-block" style="color: red;">
-                            Please enter a valid expiration_date!
+                            Please enter a valid expirationDate!
                          </span>  
                     </div>
                     <div class="col-md-6">
                         <mat-form-field appearance="fill" class="full-width">
-                            <mat-label>creation_date</mat-label>
-                            <input matInput [matDatepicker]="dp1" disabled formControlName="creation_date">
-                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                            <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                            <mat-label>creationDate</mat-label>
+                            <input matInput [matDatepicker]="dp2" disabled formControlName="creationDate">
+                            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                         </mat-form-field>
                         <span
-                            *ngIf="!updateForm.get('creation_date').valid && updateForm.get('creation_date').touched"
+                            *ngIf="!updateForm.get('creationDate').valid && updateForm.get('creationDate').touched"
                             class="help-block" style="color: red;">
-                            Please enter a valid creation_date!
+                            Please enter a valid creationDate!
                          </span>  
                     </div>
                 </div> 

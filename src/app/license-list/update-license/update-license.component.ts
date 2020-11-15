@@ -21,8 +21,8 @@ export class UpdateLicenseComponent implements OnInit {
   createFormGroup(){
     this.updateForm= new FormGroup({
       'name': new FormControl(this.license.name, [Validators.required]),
-      'expiration_date': new FormControl(this.license.expiration_date, [Validators.required]),
-      'creation_date': new FormControl(this.license.creation_date, [Validators.required])
+      'expirationDate': new FormControl(this.license.expirationDate, [Validators.required]),
+      'creationDate': new FormControl(this.license.creationDate, [Validators.required])
 
     });
   }
