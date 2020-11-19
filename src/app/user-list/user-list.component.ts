@@ -23,28 +23,39 @@ export class UserListComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource= new MatTableDataSource<User>();
-  usersData: User[]=[];
   undo=true;
+  usersData:User[]=[]
   @ViewChild(MatSort) sort: MatSort;
-
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
     }
   constructor( private userService:UserService,private snackBar: MatSnackBar,private matDialog:MatDialog,private toastr: ToastrService) { }
   ngOnInit(): void { 
-   this.usersData=this.userService.getUsersTable();
-   this.dataSource.data=this.usersData;
+   this.userService.getUsersTable().subscribe((users:User[])=>{
+    
+    this.usersData=users;
+    this.dataSource.data=this.usersData;
+    }
+    ,(_erorr)=>{
+        console.log("Error is "+_erorr);
+    }
+    ); 
   }  
-  displayedColumns: string[] = [ 'userName', 'password', 'email','creationDate','birthDate','Update','Delete'];
+  displayedColumns: string[] = [ 'userName', 'password','creationDate','birthDate','Update','Delete'];
   onUpdate(user:User){
     const DilogCon=new MatDialogConfig();
     DilogCon.disableClose=true;
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
     DilogCon.data=user;
-    this.matDialog.open(UpdateUserComponent,DilogCon);
+    let dialogRef=this.matDialog.open(UpdateUserComponent,DilogCon);
+    dialogRef.afterClosed().subscribe(res => {
+      if(res.data!==undefined){
+      const updatedUser:User=res.data;
+      this.updateUsersTable(updatedUser);
+      }
+    });
   }
   onDelete(user:User){ 
     let mass='the user '+user.userName+' Deleted';
@@ -64,14 +75,30 @@ export class UserListComponent implements OnInit {
     });
   }
   deletUser(user:User){
-    this.userService.deleteUser(user);
+    this.userService.deleteUser(user).subscribe(()=>{
+      const index = this.usersData.indexOf(user, 0);    
+      this.usersData.splice(index, 1); 
+      this.dataSource.data=this.usersData;
+    },
+    (error)=>{
+      console.log(error);
+    });
   }
   onClick(){
     const DilogCon=new MatDialogConfig();
     DilogCon.disableClose=true;
     DilogCon.autoFocus=true;
     DilogCon.width="60%";
-    this.matDialog.open(AddUserFormComponent,DilogCon);
+    let dialogRef=this.matDialog.open(AddUserFormComponent,DilogCon);
+    dialogRef.afterClosed().subscribe(res => {
+      if(res.data!==undefined){
+      this.pushToUsersTable(res.data);
+      }
+    });
+  }
+  private pushToUsersTable(newUser: User) {
+    this.usersData.push(newUser);
+    this.dataSource.data=this.usersData;
   }
   showSuccess() { 
     this.toastr.success('User deleted successfully!','',{
@@ -80,5 +107,12 @@ export class UserListComponent implements OnInit {
     });
     this.toastr.clear;
   }
-
+  private updateUsersTable(user:User){
+    this.usersData.forEach((value, index) => {
+      if(value.id===user.id){
+        this.usersData[index]=user;
+        this.dataSource.data=this.usersData;
+      }
+  });
+  }
 }

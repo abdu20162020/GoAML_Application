@@ -6,7 +6,7 @@
         <mat-icon style="cursor: pointer;" (click)="closePop()">close</mat-icon>
     </div>
 </div>
-<div class="row" *ngIf="this.license">
+<div class="row" *ngIf="this.licenseData">
     <div class="col-md-12">
         <mat-card>
             <mat-card-header>
@@ -14,16 +14,15 @@
               </mat-card-header>
             <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
                 <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field class="full-width">
-                                <mat-select formControlName="name" name="name">
+                     <div class="col-md-6">
+                         <mat-form-field class="full-width">
+                                <mat-select formControlName="applicationName" name="applicationName">
                                     <mat-option *ngFor="let food of foods" [value]="food.value">
                                         {{food.value}}
                                     </mat-option>
                                 </mat-select>
-                            </mat-form-field>  
-                        </div>
-                    
+                        </mat-form-field>  
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -43,7 +42,7 @@
                         <mat-form-field appearance="fill" class="full-width">
                             <mat-label>creationDate</mat-label>
                             <input matInput [matDatepicker]="dp2" disabled formControlName="creationDate">
-                            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker-toggle matSuffix [for]="dp2" disabled></mat-datepicker-toggle>
                             <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                         </mat-form-field>
                         <span
@@ -57,7 +56,7 @@
                     <div class="col-md-12">
                         <button mat-raised-button color="primary" type="submit" style="width: 100%;"
                         [disabled]="!updateForm.valid">
-                           <strong> Update Bank</strong>
+                           <strong> Update License</strong>
                         </button>
                     </div>
                 </div>

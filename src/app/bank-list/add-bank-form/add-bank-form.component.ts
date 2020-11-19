@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Bank } from 'src/app/shared/bank.model';
+import { BankService } from 'src/app/shared/bank.service';
 
 @Component({
   selector: 'app-add-bank-form',
@@ -9,9 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-bank-form.component.css']
 })
 export class AddBankFormComponent implements OnInit {
-
   addBankForm:FormGroup;
-  constructor(public dialogRef: MatDialogRef<AddBankFormComponent>,private toastr: ToastrService) { }
+  constructor(public dialogRef: MatDialogRef<AddBankFormComponent>,private toastr: ToastrService,private bankService:BankService) { }
   //to hide and show password
   hide = true;
   ngOnInit(): void {
@@ -21,15 +22,23 @@ export class AddBankFormComponent implements OnInit {
     });
   }
   onSubmit(){
-    this.showSuccess();
-    this.addBankForm.reset();
-    this.dialogRef.close();
+      const bank:Bank= new Bank(0,this.addBankForm.get('bankname').value,this.addBankForm.get('country').value)
+    this.bankService.saveBanks(bank).subscribe(
+      (bank:Bank)=>{
+        this.showSuccess(); 
+        this.dialogRef.close({data:bank});
+        this.addBankForm.reset();
+      },
+      (error)=>{
+        console.log('error'+error);
+      }
+    );
   }
   closePop(){
-    this.dialogRef.close();
+    this.dialogRef.close({data:undefined});
+    this.addBankForm.reset();
   }
-  showSuccess() {
-    
+  showSuccess() {   
     this.toastr
     this.toastr.success('Added successfully!','',{
       "closeButton": true,
@@ -37,5 +46,4 @@ export class AddBankFormComponent implements OnInit {
     });
     this.toastr.clear;
   }
-
 }

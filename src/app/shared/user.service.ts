@@ -1,53 +1,26 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { User } from "./user.model";
 
-
+@Injectable()
 export class UserService{
-    private users: User[] = [
-        { id:0, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:1, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:2, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:3, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:4, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:5, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:6, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:7, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:8, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:9, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:10, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:11, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:12, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:13, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:14, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:15, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:16, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:17, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:18, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:19, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:20, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:21, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:22, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:23, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:23, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:24, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:25, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:26, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:27, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }, 
-        { id:28, userName:'Omar',  password:'1111',email:'Omer@gmail.com', creationDate:new Date("2019-01-16"), birthDate:new Date("2019-01-16") }
-      ];    
+    constructor(private httpClient: HttpClient){}
+    private users: User[] = [];    
     usersChanged = new Subject<User[]>();
-     getUsers(){
-         return this.users.slice();
-     }
-     getUsersTable(){
-         return this.users.slice();
-     }
-
-     deleteUser(user:User){
-        const index = this.users.indexOf(user, 0);    
-        this.users.splice(index, 1);   
-        this.usersChanged.next(this.users.slice());
-     }
-    
-
+    getUsers(){
+        return this.users.slice();
+    }
+    getUsersTable(){
+        return  this.httpClient.get<User[]>('http://localhost:8080/users', { observe: 'body', responseType: 'json' });
+    }
+    deleteUser(user:User){
+        return this.httpClient.delete('http://localhost:8080/users'+'/'+user.id);      
+    }
+    saveUser(user:User){
+        return this.httpClient.post<User>('http://localhost:8080/users', user);      
+    }
+    updateUer(user:User,id:number){
+        return this.httpClient.put<User>('http://localhost:8080/users'+'/'+id,user);
+    }
 }

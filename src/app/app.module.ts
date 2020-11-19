@@ -56,6 +56,7 @@ import { SearchLicenseComponent } from './license-list/search-license/search-lic
 import { UpdateLicenseComponent } from './license-list/update-license/update-license.component';
 import { LicenseServiceTest } from './shared/license.test.service';
 import { ToastrModule } from 'ngx-toastr';
+import {SideContentService} from './home/dashboard/side-content-table/side.content.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,7 +120,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot(),
 
   ],
-  providers: [UserService,BankService,MatDatepickerModule,LicenseServiceTest],
+  providers: [UserService,BankService,MatDatepickerModule,LicenseServiceTest,SideContentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

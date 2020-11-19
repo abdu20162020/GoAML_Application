@@ -7,16 +7,25 @@
             <form [formGroup]="addLicenseForm" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="col-md-6">
-
+                        <h4>Application Name</h4>
                         <mat-form-field class="full-width">
-                            <mat-select formControlName="name" name="food">
+                            <mat-select formControlName="applicationName" name="food">
                                 <mat-option *ngFor="let food of foods" [value]="food.value">
                                     {{food.value}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>                                      
                     </div>
-                  
+                    <div class="col-md-6">
+                        <h4>Bank Name</h4>
+                        <mat-form-field class="full-width">
+                            <mat-select formControlName="bankName" name="Banks">
+                                <mat-option *ngFor="let bank of Banks" [value]="bank.value">
+                                    {{bank.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>                                      
+                    </div>
                 </div> 
                 <div class="row">
                     <div class="col-md-6">
@@ -32,7 +41,6 @@
                           Please enter a valid creationDate!
                        </span>
                     </div>
-
                     <div class="col-md-6">
                         <mat-form-field appearance="fill"  class="full-width">
                             <mat-label>exanple : 11/17/2020</mat-label>
@@ -50,8 +58,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <button mat-raised-button color="primary" type="submit" style="width: 100%;"
-                        [disabled]="!addLicenseForm.valid"
-                        >
+                        [disabled]="!addLicenseForm.valid">
                            <strong> Add License</strong>
                         </button>
                     </div>

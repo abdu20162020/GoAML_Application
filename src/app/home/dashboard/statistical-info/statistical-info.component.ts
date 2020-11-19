@@ -12,7 +12,7 @@ export class StatisticalInfoComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  title = 'Title of statistic';
+  title = 'The ratio between the newest and the oldest among the licenses';
    type = 'PieChart';
    data = [
       ['Firefox', 45.0],

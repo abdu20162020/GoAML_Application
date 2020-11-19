@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UpdateBankComponent implements OnInit {
 
-  constructor(private userService:BankService, public dialogRef: MatDialogRef<UpdateBankComponent>,@Inject(MAT_DIALOG_DATA) public bank: Bank
+  constructor(private userService:BankService, public dialogRef: MatDialogRef<UpdateBankComponent>,@Inject(MAT_DIALOG_DATA) public bankData: Bank
   ,private toastr: ToastrService) { }
   updateForm:FormGroup;
   subscription: Subscription;
@@ -26,18 +26,27 @@ export class UpdateBankComponent implements OnInit {
   }
   createFormGroup(){
     this.updateForm= new FormGroup({
-      'bankname': new FormControl(this.bank.name, [Validators.required]),
-      'country': new FormControl(this.bank.country, [Validators.required]),
+      'bankname': new FormControl(this.bankData.name, [Validators.required]),
+      'country': new FormControl(this.bankData.country, [Validators.required]),
     });
   }
   onSubmit(){
-    this.showSuccess();
-    this.updateForm.reset(); 
-    this.bank=undefined;
-    this.dialogRef.close(); 
+   const bank:Bank=new Bank(0,this.updateForm.get('bankname').value,this.updateForm.get('country').value);
+   delete bank.id;
+   this.userService.updateBank(bank,this.bankData.id).subscribe(
+     (Bank:Bank)=>{
+      this.showSuccess();  
+      this.dialogRef.close({data:Bank}); 
+      this.updateForm.reset();
+      
+     },
+     (error)=>{
+       console.log('bank update error'+error);
+     }
+   ); 
   }
   closePop(){
-    this.dialogRef.close(); 
+    this.dialogRef.close({data:undefined}); 
   }
   showSuccess() {
     

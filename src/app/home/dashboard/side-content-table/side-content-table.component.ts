@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { License } from 'src/app/shared/license.new.model';
+import { SideContentService } from './side.content.service';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -28,15 +30,39 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class SideContentTableComponent implements OnInit, AfterViewInit {
 
-  pageSizeOption:number[]=[];
-  constructor() { }
+  dataSource= new MatTableDataSource<License>();
+  dataSource2= new MatTableDataSource<License>();
+
+  constructor(private sideContentService :SideContentService ) { }
   ngAfterViewInit(): void {
     }
-  
+    LicenseDataTopCreated: License[]=[];
+    LicenseDataTopExpired: License[]=[];
 
-  ngOnInit(): void {
-  
+    displayedColumns: string[] = [ 'id', 'applicationName', 'creationDate','expirationDate'];
+    ngOnInit(): void {
+    this.topCreatedInit();
+    this.topExpiredInit();
+
+    }
+  topExpiredInit() {
+    this.sideContentService.getLicensesTableTopExpired().subscribe((license:License[])=>{
+      this.LicenseDataTopExpired=license;
+      this.dataSource2.data=this.LicenseDataTopExpired;
+    }
+    ,(_erorr)=>{
+          console.log("Error is "+_erorr);
+     }
+    );   }
+  topCreatedInit() {
+    this.sideContentService.getLicensesTableTopCreated().subscribe((license:License[])=>{
+      this.LicenseDataTopCreated=license;
+      this.dataSource.data=this.LicenseDataTopCreated;
+    }
+    ,(_erorr)=>{
+          console.log("Error is "+_erorr);
+     }
+    ); 
   }
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  
 }

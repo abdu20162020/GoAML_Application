@@ -1,6 +1,6 @@
 export  interface License{
     id:number,
-    name:string,
+    applicationName:string,
     creationDate:Date,
     expirationDate:Date
 }
