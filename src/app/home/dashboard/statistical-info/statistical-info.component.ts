@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { License } from 'src/app/shared/license.new.model';
+import { StatisticalInfoService } from './statisticalInfo.service';
 
 @Component({
   selector: 'app-statistical-info',
@@ -7,22 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticalInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private statisticalInfoService:StatisticalInfoService) { }
 
   ngOnInit(): void {
+
+     this.statisticalInfoService.getExpiredLicenses().subscribe(
+        (expiredLicense:License[])=>{
+
+           this.data.push(['expiredLicense',expiredLicense.length]);
+        }
+
+     );
+     this.statisticalInfoService.getNotExpiredLicenses().subscribe(
+      (notExpiredLicense:License[])=>{
+
+         this.data.push(['notExpiredLicense',notExpiredLicense.length]);
+      }
+
+   );
     
   }
   title = 'The ratio between the newest and the oldest among the licenses';
    type = 'PieChart';
-   data = [
-      ['Firefox', 45.0],
-      ['IE', 26.8],
-      ['Chrome', 12.8],
-      ['Safari', 8.5],
-      ['Opera', 6.2],
-      ['Others', 0.7] 
-   ];
-   columnNames = ['Browser', 'Percentage'];
+   data = [];
+   columnNames = ['License', 'Number'];
    options = {
     is3D: true
  };
@@ -33,3 +43,4 @@ export class StatisticalInfoComponent implements OnInit {
    height = 400;
 
 }
+

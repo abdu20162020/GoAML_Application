@@ -1,28 +1,30 @@
-
-
   <mat-toolbar class="navbar" color="primary">
-    <div class="toolbar">Application</div>
+    <div>Application</div>
     <div>
-      <!-- <span >Howm</span>
-      <span >about</span> -->
+      <button mat-raised-button color="primary" (click)="onClick()">home</button>
     </div>
   </mat-toolbar>
-  <mat-drawer-container class="contain">
-  <mat-drawer   mode="side" opened  class="sidNav">
-    <button mat-raised-button class="btn"   routerLink="/dashboard">home</button>
-    <br>
-    <button mat-raised-button class="btn"   routerLink="/user-list">Users</button>
-    <br>
-    <button mat-raised-button class="btn"   routerLink="/bank-list">Banks</button>
-    <br>
-    <button mat-raised-button class="btn"   routerLink="/license-list">Licenses</button>    
-  </mat-drawer>
-    <mat-drawer-content style="overflow: hidden;">   
+  <mat-drawer-container class="contain"  *ngIf="this.userLogedIn">
+    <mat-drawer #drawer  mode="side" opened  class="sidNav">
+      <button mat-raised-button class="btn"   routerLink="/dashboard">home</button>
+      <br>
+      <button mat-raised-button class="btn"   routerLink="/user-list">Users</button>
+      <br>
+      <button mat-raised-button class="btn"   routerLink="/bank-list">Banks</button>
+      <br>
+      <button mat-raised-button class="btn"   routerLink="/license-list">Licenses</button>    
+    </mat-drawer>
+    <mat-drawer-content style="overflow: hidden;">  
         <div class="row">
           <div class="col-md-12" >
+            <button mat-raised-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
             <router-outlet></router-outlet>
-          </div>
-        </div> 
+          </div>          
+        </div>
     </mat-drawer-content>
   </mat-drawer-container>
-  
+  <div class="row" *ngIf="!this.userLogedIn">
+    <div class="col-md-12">
+      <app-signin></app-signin>
+    </div> 
+  </div>

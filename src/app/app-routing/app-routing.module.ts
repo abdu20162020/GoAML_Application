@@ -5,14 +5,16 @@ import { DashboardComponent } from '../home/dashboard/dashboard.component';
 import { AddFormLicenseComponent } from '../license-list/add-form-license/add-form-license.component';
 import { LicenseListComponent } from '../license-list/license-list.component';
 import { SearchLicenseComponent } from '../license-list/search-license/search-license.component';
- import { UserListComponent } from '../user-list/user-list.component';
+import { SigninComponent } from '../signin/signin.component';
+import { UserListComponent } from '../user-list/user-list.component';
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'user-list', component: UserListComponent },
-  { path: 'bank-list', component: BankListComponent },
+  { path: '', redirectTo: 'signin', pathMatch: 'full' },
+  { path: 'dashboard',   component: DashboardComponent },
+  { path: 'user-list',   component: UserListComponent },
+  { path: 'bank-list',   component: BankListComponent },
+  { path:'signin',       component:SigninComponent},
   { path :'license-list',component:LicenseListComponent,children:[
     {
       path: '',

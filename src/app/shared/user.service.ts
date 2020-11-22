@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/internal/Subject';
+import { EventEmitter, Injectable } from '@angular/core';
 import { User } from "./user.model";
+
 
 @Injectable()
 export class UserService{
+
     constructor(private httpClient: HttpClient){}
-    private users: User[] = [];    
-    usersChanged = new Subject<User[]>();
+    userlogIn = new EventEmitter<number>();
+
+    private users: User[] = [];
     getUsers(){
         return this.users.slice();
     }
@@ -22,5 +24,8 @@ export class UserService{
     }
     updateUer(user:User,id:number){
         return this.httpClient.put<User>('http://localhost:8080/users'+'/'+id,user);
+    }
+    userLogIn(name:string,password:string){
+        return this.httpClient.get<User>('http://localhost:8080/home/signin/'+name+'/'+password);
     }
 }
